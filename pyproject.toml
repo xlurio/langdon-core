@@ -1,0 +1,21 @@
+[project]
+name = "langdon-core"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Lucas Calegario"}
+]
+readme = "README.md"
+license = "LICENSE"
+requires-python = ">=3.12"
+dependencies = [
+    "sqlalchemy (>=2.0.39,<2.1.0)"
+]
+
+[tool.poetry]
+packages = [{include = "langdon_core", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
