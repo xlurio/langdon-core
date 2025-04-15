@@ -1,7 +1,7 @@
 [project]
 name = "langdon-core"
 version = "0.1.0"
-description = ""
+description = "Core library that supports the Langdon ecosystem"
 authors = [
     {name = "Lucas Calegario"}
 ]
