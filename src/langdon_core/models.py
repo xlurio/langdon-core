@@ -132,17 +132,15 @@ class WebDirectory(SqlAlchemyModel):
     http_cookie_relationships: orm.Mapped[list[DirCookieRel]] = orm.relationship(
         back_populates="directory", cascade="all, delete-orphan"
     )
-    screenshots: orm.Mapped[list[WebDirectoryScreenshot]] = orm.relationship(
-        back_populates="directory", cascade="all, delete-orphan"
+    screenshot: orm.Mapped[WebDirectoryScreenshot] = orm.relationship(
+        back_populates="directory"
     )
 
     def get_full_url(self) -> str:
         """Get the full URL of the web directory."""
         protocol = "https" if self.uses_ssl else "http"
         domain = self.domain.name if self.domain else self.ip_address.address
-        return urllib.parse.urlunparse(
-            (protocol, domain, self.path, "", "", "")
-        )
+        return urllib.parse.urlunparse((protocol, domain, self.path, "", "", ""))
 
 
 HttpHeaderId = int
@@ -234,7 +232,7 @@ class WebDirectoryScreenshot(SqlAlchemyModel):
     directory_id: orm.Mapped[int] = orm.mapped_column(
         sqlalchemy.ForeignKey("langdon_webdirectories.id")
     )
-    directory: orm.Mapped[WebDirectory] = orm.relationship(back_populates="screenshots")
+    directory: orm.Mapped[WebDirectory] = orm.relationship(back_populates="screenshot")
 
 
 TransportLayerProtocolT = Literal["tcp", "udp"]
