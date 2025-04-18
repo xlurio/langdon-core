@@ -132,7 +132,7 @@ class WebDirectory(SqlAlchemyModel):
     http_cookie_relationships: orm.Mapped[list[DirCookieRel]] = orm.relationship(
         back_populates="directory", cascade="all, delete-orphan"
     )
-    screenshot: orm.Mapped[WebDirectoryScreenshot] = orm.relationship(
+    screenshot: orm.Mapped[WebDirectoryScreenshot | None] = orm.relationship(
         back_populates="directory"
     )
 
